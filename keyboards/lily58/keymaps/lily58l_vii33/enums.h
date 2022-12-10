@@ -58,4 +58,5 @@ enum custom_keycodes {
 #define ALT_K LALT_T(KC_K)
 #define GUI_L RGUI_T(KC_L)
 
-#define SHFT_SP RSFT_T(KC_SPC)
+#define SHFT_QT LSFT_T(CC_QUOT)
+#define SHFT_AE RSFT_T(CC_AE)

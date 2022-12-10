@@ -28,27 +28,29 @@ uint8_t mods_state;
 
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-  
+
   /* on key release */
   if (record->event.pressed == false) { 
-    /* Luna pet start */
+    /* Luna pet */
     lunaIsJumping = false;
     lunaIsSneaking = false;
     lunaIsBarking = false;
-    /* Luna pet end */
+
     return true;            // Don't process keys further on key release (currently we don't need it)
   }  
   
 
   mods_state = get_mods();    // Store the current modifier state in the variable for later reference
 
+  /* For OLED Key logger */
   // if (record->event.pressed) {
-  //   // add_keylog(keycode);    // For OLED Key logger
+  //   // add_keylog(keycode);   
   // }
+
   
   switch (keycode) 
   {
-    case SHFT_SP:
+    case KC_SPC:
       lunaIsJumping  = true;
       lunaShowedJump = false;
       break;
@@ -63,8 +65,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       lunaIsBarking = true;
       break;
 
-    case CC_AE:
-      tap_code16(ALGR(KC_Q));   // tapcode16() allows you to use modifiers!
+    case SHFT_AE:
+      if (record->tap.count > 0) {    // The key is being tapped.
+        tap_code16(ALGR(KC_Q));       // tapcode16() allows you to use modifiers!
+        return false;
+      }
       break;
 
     case CC_OE:
@@ -107,13 +112,15 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
       break;
 
-    case CC_QUOT:
-      if ( mods_state & MOD_MASK_SHIFT ) {  
-        tap_code(KC_QUOT);             // " 
-        tap_code(KC_SPC);              //  needed bc. of dead key
-      }else {                               
-        tap_code(KC_QUOT);             // '  
-        tap_code(KC_SPC);              //  needed bc. of dead key
+    case SHFT_QT:
+      if (record->tap.count > 0) {   // The key is being tapped.
+        if ( mods_state & MOD_MASK_SHIFT ) {  
+          tap_code(KC_QUOT);             // " 
+          tap_code(KC_SPC);              //  needed bc. of dead key
+        }else {                               
+          tap_code(KC_QUOT);             // '  
+          tap_code(KC_SPC);              //  needed bc. of dead key
+        }
       }
       break;
 
@@ -145,13 +152,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         tap_code16(KC_QUES);             // ? 
       }
       break;
-
-    case KC_LPRN:   // (
-      if ( mods_state & MOD_MASK_SHIFT ) {   // ( | )
-        SEND_STRING("()" SS_TAP(X_LEFT));
-      } else {
-        return true;  // continue with normal KC
-      }
       
     #ifdef RGBLIGHT_ENABLE
     case CC_SAVRGB:   // Saves color config to eeprom. Used to save eeprom write cycles              
