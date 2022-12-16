@@ -113,7 +113,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       break;
 
     case SHFT_QT:
-      if (record->tap.count > 0) {   // The key is being tapped.
+      if (record->tap.count > 0) {       // The key is being tapped.
         if ( mods_state & MOD_MASK_SHIFT ) {  
           tap_code(KC_QUOT);             // " 
           tap_code(KC_SPC);              //  needed bc. of dead key
