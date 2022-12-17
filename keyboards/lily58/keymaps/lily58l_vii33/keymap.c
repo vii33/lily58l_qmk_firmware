@@ -125,17 +125,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   _______,  _______,  _______,  _______,  _______,  _______,                    _______,  _______,  _______,  _______, _______, _______, 
   _______,  QC_AT,    KC_TILD,  QC_EUR,   KC_PSCR,  _______,                    KC_PAST,  KC_LT,    KC_LCBR,  KC_RCBR, KC_PMNS, _______,
   KC_PIPE,  XXXXXXX,  QC_SS,    XXXXXXX,  XXXXXXX,  CTALDEL,                    KC_PSLS,  KC_EQL,   KC_LPRN,  KC_RPRN, KC_PPLS, QC_DQUT, 
-  QC_DEG,   KC_BSPC,  QC_CTLX,  QC_CTLC,  QC_CTLV,  XXXXXXX, _______, _______,  QC_HAT,   KC_GT,    KC_LBRC,  KC_RBRC, QC_AND,  KC_PENT,
+  QC_DEG,   XXXXXXX,  QC_CTLX,  QC_CTLC,  QC_CTLV,  XXXXXXX, _______, _______,  QC_HAT,   KC_GT,    KC_LBRC,  KC_RBRC, QC_AND,  KC_PENT,
                                 _______,  _______,  _______, KC_LSFT, _______,  _______,  _______,  _______
 ),
 
 
   [_MOD] = LAYOUT(
-    RGB_TOG, RGB_M_P, RGB_M_B, RGB_M_SW, RGB_M_G,  RGB_M_SN,                      XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  KC_COMMA, GAME, 
-    RGB_MOD, XXXXXXX, XXXXXXX, KC_UP,    RGB_M_T,  CC_ALRM,                       KC_PAST,  KC_P7,    KC_P8,    KC_P9,    KC_PPLS,  KC_PERC,
-    XXXXXXX, KC_BSPC, KC_LEFT, KC_DOWN,  KC_RIGHT, XXXXXXX,                       KC_PSLS,  KC_P4,    KC_P5,    KC_P6,    KC_PMNS,  KC_EQL, 
-    XXXXXXX, XXXXXXX, XXXXXXX, KC_DEL,   KC_NUM,   XXXXXXX, CC_SAVRGB,  _______,  KC_P0,    KC_P1,    KC_P2,    KC_P3,    KC_DOT,   KC_PENT, 
-                               XXXXXXX,  _______,  _______, KC_SPC,     _______,  _______,  _______,  _______
+    RGB_TOG,  KC_1,    KC_2,    KC_3,    KC_4,     KC_5,                          RGB_M_P,  RGB_M_B,  RGB_M_SW, RGB_M_G,  KC_COMMA, GAME, 
+    RGB_MOD,  XXXXXXX, KC_BSPC, KC_UP,   KC_DEL,   XXXXXXX,                       KC_PAST,  KC_P7,    KC_P8,    KC_P9,    KC_PPLS,  KC_PERC,
+    RGB_M_SN, XXXXXXX, KC_LEFT, KC_DOWN, KC_RIGHT, XXXXXXX,                       KC_PSLS,  KC_P4,    KC_P5,    KC_P6,    KC_PMNS,  KC_EQL, 
+    CC_ALRM,  XXXXXXX, KC_HOME, XXXXXXX, KC_END,   KC_NUM,  CC_SAVRGB,  _______,  KC_P0,    KC_P1,    KC_P2,    KC_P3,    KC_DOT,   KC_PENT, 
+                                XXXXXXX,  _______, _______, KC_SPC,     _______,  _______,  _______,  _______
 ),
 
   [_GAME] = LAYOUT(
@@ -158,9 +158,9 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
             return TAPPING_TERM + 150;
         case SHFT_QT:
         case SHFT_AE:
-            return TAPPING_TERM - 60;
+            return TAPPING_TERM - 70;
         case MOD:
-            return TAPPING_TERM - 60;
+            return TAPPING_TERM - 70;
         default:
             return TAPPING_TERM;
     }
