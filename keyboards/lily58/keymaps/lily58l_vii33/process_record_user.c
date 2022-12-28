@@ -121,6 +121,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
           tap_code(KC_QUOT);             // '  
           tap_code(KC_SPC);              //  needed bc. of dead key
         }
+        return false;                    // important here to avoid ghost key strokes
       }
       break;
 
