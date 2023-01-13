@@ -89,19 +89,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /* QWERTY Example
  * ,-----------------------------------------.                    ,-----------------------------------------.
- * | ESC  |   1  |   2  |   3  |   4  |   5  |                    |   6  |   7  |   8  |   9  |   0  |  `   |
+ * | ESC  |   1  |   2  |   3  |   4  |   5  |                    |   6  |   7  |   8  |   9  |   0  |  -   |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * | Tab  |   Q  |   W  |   E  |   R  |   T  |                    |   Y  |   U  |   I  |   O  |   P  |  -   |
+ * | Tab  |   Q  |   W  |   E  |   R  |   T  |                    |   Y  |   U  |   I  |   O  |   P  |  Ü   |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * |LCTRL |   A  |   S  |   D  |   F  |   G  |-------.    ,-------|   H  |   J  |   K  |   L  |   ;  |  '   |
- * |------+------+------+------+------+------|   [   |    |    ]  |------+------+------+------+------+------|
- * |LShift|   Z  |   X  |   C  |   V  |   B  |-------|    |-------|   N  |   M  |   ,  |   .  |   /  |RShift|
+ * |  '   |   A  |   S  |   D  |   F  |   G  |-------.    .-------|   H  |   J  |   K  |   L  |   Ö  |  Ä   |
+ * |------+------+------+------+------+------| Volume|    | Scroll|------+------+------+------+------+------|
+ * |  `   |   Z  |   X  |   C  |   V  |   B  |-------|    |-------|   N  |   M  |   ,  |   .  |   ?  |Enter |
  * `-----------------------------------------/       /     \      \-----------------------------------------'
- *                   | LAlt | LGUI |LOWER | /Space  /       \Enter \  |UPPER |BackSP| RGUI |
+ *                   | /    | MOD  |LOWER | /Space  /       \Space \  |BackSP|UPPER |Delete|
  *                   |      |      |      |/       /         \      \ |      |      |      |
  *                   `----------------------------'           '------''--------------------'
  */
-
 
 [_QWERTY] = LAYOUT(
   KC_ESC,   KC_1,   KC_2,  KC_3,     KC_4,   KC_5,                           KC_6,    KC_7,   KC_8,     KC_9,    KC_0,    KC_MINS, 
@@ -153,12 +152,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /* Different tapping timings */
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
+        case CTL_F:
+        case CTL_J:
+          return TAPPING_TERM - 20;
         case GUI_S:
         case GUI_L:
             return TAPPING_TERM + 150;
         case SHFT_QT:
         case SHFT_AE:
-            return TAPPING_TERM - 70;
+            return TAPPING_TERM - 80;
         case MOD:
             return TAPPING_TERM - 70;
         default:
